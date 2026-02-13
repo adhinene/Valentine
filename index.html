@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Girlfriend Verification 😌</title>
+
+<style>
+body{
+  margin:0;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align:center;
+  background: linear-gradient(45deg,#ff4e88,#ff9ecb);
+  color:white;
+  overflow:hidden;
+}
+
+.page{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+}
+
+button{
+  padding:12px 20px;
+  font-size:18px;
+  border:none;
+  border-radius:25px;
+  cursor:pointer;
+  margin:10px;
+}
+
+.yes{ background:#00c853; color:white;}
+.no{ background:#d50000; color:white; position:absolute;}
+.hidden{ display:none;}
+
+.firework, .heart{
+  position:absolute;
+  font-size:22px;
+  animation: pop 1s ease-out forwards;
+}
+
+@keyframes pop{
+  0%{ transform:scale(0); opacity:1;}
+  100%{ transform:scale(2); opacity:0;}
+}
+
+.biglove{
+  font-size:80px;
+  margin-top:20px;
+  animation: beat 1s infinite alternate;
+}
+
+@keyframes beat{
+  from{ transform:scale(1);}
+  to{ transform:scale(1.2);}
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div class="page" id="p1">
+  <h1>Welcome Yashuu 💅</h1>
+  <p>Prove you are qualified to date me.</p>
+  <button onclick="next('p1','p2')">Start 😌</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page hidden" id="p2">
+  <h2>Maths Level 🤓</h2>
+  <p>Who is better at maths?</p>
+  <button onclick="maths()">You</button>
+  <button onclick="maths()">Me</button>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page hidden" id="p3">
+  <h2>Love Level ❤️</h2>
+  <p>Who loves more?</p>
+  <button onclick="loves()">You</button>
+  <button onclick="loves()">Me</button>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page hidden" id="p4">
+  <h2>Cutiepie Level 🥺</h2>
+  <p>Who is cutiepie?</p>
+  <button onclick="cutie()">Me</button>
+  <button onclick="cutie()">You</button>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page hidden" id="p5">
+  <h2>Final Question ⚠️</h2>
+  <p>Are you lucky to have me?</p>
+  <button onclick="nextFinal()" class="yes">YES</button>
+  <button class="no" id="run">No</button>
+</div>
+
+<!-- FINAL PAGE -->
+<div class="page hidden" id="p6">
+  <h1>🎉 Correct 🎉</h1>
+  <h2>You passed the boyfriend exam.</h2>
+  <p>Prize: lifetime with me 😌</p>
+  <h1>Be my Valentine forever? ❤️</h1>
+  <div class="biglove">🤏❤️</div>
+  <button class="yes" onclick="love()">YES 💘</button>
+</div>
+
+<script>
+function next(a,b){
+  fireworks();
+  document.getElementById(a).classList.add("hidden");
+  document.getElementById(b).classList.remove("hidden");
+}
+
+function maths(){
+  fireworks();
+  alert("Correct answer: ME obviously 🤓");
+  next('p2','p3');
+}
+
+function loves(){
+  fireworks();
+  alert("Correct answer: ME DUHHH 😂❤️");
+  next('p3','p4');
+}
+
+function cutie(){
+  fireworks();
+  alert("Obviously YOU 🥺❤️");
+  next('p4','p5');
+}
+
+function nextFinal(){
+  fireworks();
+  document.getElementById('p5').classList.add("hidden");
+  document.getElementById('p6').classList.remove("hidden");
+  heartRain();
+}
+
+const btn = document.getElementById("run");
+btn.addEventListener("touchstart", move);
+btn.addEventListener("mouseover", move);
+
+function move(){
+  const i = Math.floor(Math.random()* (window.innerWidth-100));
+  const j = Math.floor(Math.random()* (window.innerHeight-50));
+  btn.style.left = i+"px";
+  btn.style.top = j+"px";
+}
+
+function love(){
+  fireworks();
+  alert("Good choice 😌❤️ Love you Yashuu!");
+}
+
+/* FIREWORKS */
+function fireworks(){
+  for(let i=0;i<15;i++){
+    const f = document.createElement("div");
+    f.className="firework";
+    f.innerHTML="🎆";
+    f.style.left=Math.random()*window.innerWidth+"px";
+    f.style.top=Math.random()*window.innerHeight+"px";
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),1000);
+  }
+}
+
+/* HEART RAIN */
+function heartRain(){
+  setInterval(()=>{
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="❤️";
+    h.style.left=Math.random()*window.innerWidth+"px";
+    h.style.top=Math.random()*window.innerHeight+"px";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),1000);
+  },300);
+}
+</script>
+
+</body>
+</html>
